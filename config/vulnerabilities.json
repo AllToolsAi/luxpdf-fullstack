@@ -1,0 +1,11 @@
+[
+  "exec",
+  "spawn",
+  "fork",
+  "setTimeout",
+  "setInterval",
+  "eval",
+  "Function",
+  "WebAssembly",
+  "vm\\.runInContext"
+]

@@ -1,0 +1,12 @@
+[
+  "process\\.exit\\(",
+  "require\\(['\"]child_process['\"]\\)",
+  "execSync\\(",
+  "Function\\(",
+  "eval\\(",
+  "WebAssembly\\.instantiate",
+  "fs\\.writeFile",
+  "os\\.system",
+  "subprocess\\.run",
+  "__import__\\("
+]

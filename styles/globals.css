@@ -1,0 +1,156 @@
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
+
+/* === Base Styles === */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f6f9fc;
+    color: #212529;
+    margin: 0;
+}
+
+/* === Buttons === */
+button {
+    font-family: inherit;
+    font-weight: 600;
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: background-color 0.2s ease, transform 0.15s ease;
+    background-color: #e5322d !important;
+    color: #fff !important;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+button:not([class]) {
+    background-color: #e5322d;
+    color: #fff;
+}
+
+button:not([class]):hover {
+    background-color: #c12722;
+}
+
+/* === Sticky Button Bar === */
+.sticky-button-bar {
+    background-color: #f6f9fc;
+    position: sticky;
+    top: 80px;
+    z-index: 100;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    margin-bottom: 1.5rem;
+}
+
+/* === Progress Bar === */
+.progress-track {
+    height: 0.5rem;
+    background-color: #e5e7eb;
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+
+.progress-fill {
+    background-color: #e5322d;
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+/* === Tool Card === */
+.tool-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tool-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* === Tool Icon === */
+.tool-icon {
+    width: 3rem;
+    height: 3rem;
+    background-color: #fdecea;
+    color: #e5322d;
+    border-radius: 9999px;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* === Ad Container === */
+.ad-container {
+    width: 100%;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1.5rem;
+}
+
+/* === Header Nav Links === */
+nav a {
+    color: #4b5563; /* text-gray-700 */
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 0.25rem;
+    transition: color 0.2s ease;
+}
+
+nav a:hover,
+nav a.active {
+    color: #e5322d;
+}
+
+nav a.active::after,
+nav a:hover::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: #e5322d;
+    border-radius: 2px;
+}
+
+/* === Logo Circle === */
+header .logo-circle {
+    background-color: #e5322d;
+    color: white;
+    font-weight: 700;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    width: 2rem;
+    height: 2rem;
+    user-select: none;
+}
