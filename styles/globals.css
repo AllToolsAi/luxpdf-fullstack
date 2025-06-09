@@ -116,7 +116,7 @@ button:not([class]):hover {
 
 /* === Header Nav Links === */
 nav a {
-    color: #4b5563; /* text-gray-700 */
+    color: #4b5563;
     font-weight: 600;
     position: relative;
     padding-bottom: 0.25rem;
@@ -153,4 +153,74 @@ header .logo-circle {
     width: 2rem;
     height: 2rem;
     user-select: none;
+}
+
+/* === Dropdown Menu === */
+.header-dropdown {
+    background-color: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 0.5rem 0;
+    width: 12rem;
+    max-height: 14rem;
+    overflow-y: auto;
+    z-index: 50;
+    font-size: 0.875rem; /* text-sm */
+    line-height: 1.25rem;
+}
+
+.header-dropdown ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.header-dropdown li {
+    margin: 0;
+}
+.header-dropdown a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #4b5563;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background 0.2s, color 0.2s;
+}
+
+.header-dropdown a:hover {
+    background-color: #f9f9f9;
+    color: #e5322d;
+    font-weight: 600;
+}
+
+/* === Text Truncation Utility === */
+.truncate {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* === Applied Truncation Targets === */
+.tool-card h3,
+.header-dropdown a,
+button > span.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-height: 700px) {
+    .header-dropdown {
+        max-height: 10rem;
+    }
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+    animation: fadeIn 0.2s ease-out;
 }

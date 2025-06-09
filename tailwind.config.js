@@ -3,11 +3,13 @@ module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
+    './app/**/*.{js,ts,jsx,tsx}', // Include this if using app directory (Next.js 13+)
   ],
   theme: {
     extend: {
       fontFamily: {
-        inter: ['Inter', 'sans-serif'],
+        sans: ['Inter', 'sans-serif'],   // Default utility: font-sans
+        inter: ['Inter', 'sans-serif'],  // Optional custom alias
       },
       colors: {
         primary: '#e63946',

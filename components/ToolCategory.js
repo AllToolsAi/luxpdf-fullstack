@@ -12,7 +12,11 @@ export default function ToolCategory({ category }) {
                 {category.tools.map((tool) => (
                     <Link href={tool.href} key={tool.name} passHref>
                         <a className="bg-white shadow-soft p-5 rounded-2xl border hover:shadow-md transition group cursor-pointer block">
-                            <h3 className="text-lg font-bold text-primary mb-2 group-hover:underline">
+                            <h3
+                                className="text-lg font-bold text-primary mb-2 group-hover:underline truncate"
+                                title={tool.name}
+                                style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                            >
                                 {tool.name}
                             </h3>
                             <p className="text-sm text-gray-600 min-h-[40px]">

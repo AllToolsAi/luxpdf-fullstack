@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    output: 'export', // for static export
-    trailingSlash: true, // optional: helps with clean static routes
+    reactStrictMode: true,
+    // output: 'export', // REMOVE this if using API routes
 };
 
 export default nextConfig;
