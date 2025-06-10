@@ -4,7 +4,7 @@ import {useState, useRef} from 'react';
 
 const mainCategories = [
     {
-        name: 'PDF Tools',
+        name: 'Elite PDF Tools',
         icon: '📄',
         description: 'Edit, convert and optimize PDF documents',
         tools: [
@@ -141,7 +141,7 @@ export default function Home() {
                             We're constantly adding new tools. Let us know what you need!
                         </p>
                         <a
-                            href="mailto:support@pdfelegance.com"
+                            href="mailto:support@elitepdftools.com"
                             className="inline-block bg-white text-primary px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition"
                         >
                             Suggest a Tool
