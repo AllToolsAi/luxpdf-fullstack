@@ -41,6 +41,12 @@ button:not([class]):hover {
     background-color: #c12722;
 }
 
+/* Accessibility: Focus visible for keyboard users */
+button:focus-visible {
+    outline: 2px solid #e5322d;
+    outline-offset: 2px;
+}
+
 /* === Sticky Button Bar === */
 .sticky-button-bar {
     background-color: #f6f9fc;
@@ -190,6 +196,14 @@ header .logo-circle {
     transition: background 0.2s, color 0.2s;
 }
 
+/* Accessibility: Focus visible for dropdown links */
+.header-dropdown a:focus-visible {
+    background-color: #fdecea;
+    color: #e5322d;
+    font-weight: 600;
+    outline: none;
+}
+
 .header-dropdown a:hover {
     background-color: #f9f9f9;
     color: #e5322d;
@@ -218,9 +232,43 @@ button > span.truncate {
     }
 }
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(4px); }
+    from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
 }
 .animate-fadeIn {
     animation: fadeIn 0.2s ease-out;
+}
+.bg-primary { background-color: #e5322d; }
+.text-primary { color: #e5322d; }
+
+.tool-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border: 1px solid #f1f1f1;
+    border-radius: 0.5rem;
+    background-color: white;
+    transition: all 0.2s ease;
+    color: #212529;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.tool-link:hover {
+    background-color: #fdecea;
+    color: #e5322d;
+    border-color: #fdecea;
+    transform: translateX(2px);
+}
+
+.tool-badge {
+    background-color: #fdecea;
+    color: #e5322d;
+    font-weight: 600;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    margin-bottom: 0.5rem;
+    display: inline-block;
 }

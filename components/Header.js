@@ -1,148 +1,170 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { ChevronDown } from 'lucide-react';
+
+const menuItems = [
+    {
+        label: 'AI',
+        items: [
+            { name: 'Chat', path: '/tools/ai/chat' },
+            { name: 'Email Assistant', path: '/tools/ai/email-assistant' },
+            { name: 'Headline Generator', path: '/tools/ai/headline-generator' },
+            { name: 'Paraphrase', path: '/tools/ai/paraphrase' },
+            { name: 'Voice Studio', path: '/tools/ai/voice-studio' },
+        ],
+    },
+    {
+        label: 'Data',
+        items: [
+            { name: 'JSON Converter', path: '/tools/data/json-converter' },
+            { name: 'XML Converter', path: '/tools/data/xml-converter' },
+        ],
+    },
+    {
+        label: 'Document',
+        items: [
+            { name: 'CV Generator', path: '/tools/document/cv-generator' },
+        ],
+    },
+    {
+        label: 'Converter',
+        items: [
+            { name: 'All File Formatter', path: '/tools/converter/all-file-formatter' },
+        ],
+    },
+    {
+        label: 'Media',
+        items: [
+            { name: 'Audio Converter', path: '/tools/media/audio-converter' },
+            { name: 'MP4 to MP3', path: '/tools/media/mp4-to-mp3' },
+            { name: 'Video Converter', path: '/tools/media/video-converter' },
+        ],
+    },
+    {
+        label: 'PDF Tools',
+        items: [
+            { name: 'Add Watermark', path: '/tools/pdf/add-watermark' },
+            { name: 'Crop PDF', path: '/tools/pdf/crop' },
+            { name: 'PDF to JPG', path: '/tools/pdf/to-jpg' },
+            { name: 'Repair PDF', path: '/tools/pdf/repair' },
+            { name: 'Rotate', path: '/tools/pdf/rotate' },
+        ],
+    },
+    {
+        label: 'Programming',
+        items: [
+            { name: 'Code Diff Checker', path: '/tools/programming/code-diff' },
+            { name: 'Code Editor', path: '/tools/programming/editor' },
+            { name: 'Diff', path: '/tools/programming/diff' },
+            { name: 'Formatter', path: '/tools/programming/formatter' },
+        ],
+    },
+    {
+        label: 'Universal Converter',
+        items: [
+            { name: 'Coming Soon', path: '/coming-soon' },
+        ],
+    },
+];
 
 export default function Header() {
-    const router = useRouter();
-    const [openDropdown, setOpenDropdown] = useState(null);
-    const dropdownRefs = useRef({});
+    const [openMenu, setOpenMenu] = useState(null);
+    const timeoutRef = useRef(null);
+    const dropdownRefs = useRef([]);
 
-    const toolCategories = [
-        {
-            key: 'pdf',
-            label: 'PDF Tools',
-            tools: [
-                { href: '/tools/pdf/merge', label: 'Merge PDF' },
-                { href: '/tools/pdf/split', label: 'Split PDF' },
-                { href: '/tools/pdf/compress', label: 'Compress PDF' },
-            ],
-        },
-        {
-            key: 'conversion',
-            label: 'Conversion',
-            tools: [
-                { href: '/tools/pdf/to-word', label: 'PDF → Word' },
-                { href: '/tools/pdf/to-ppt', label: 'PDF → PPT' },
-                { href: '/tools/pdf/to-jpg', label: 'PDF → JPG' },
-            ],
-        },
-        {
-            key: 'other',
-            label: 'Other Tools',
-            tools: [
-                { href: '/tools/pdf/sign', label: 'Sign PDF' },
-                { href: '/tools/pdf/protect', label: 'Protect PDF' },
-            ],
-        },
-        {
-            key: 'ai',
-            label: 'AI Tools',
-            tools: [
-                { href: '/tools/ai/chat', label: 'AI Chat' },
-                { href: '/tools/ai/email-assistant', label: 'Email Assistant' },
-                { href: '/tools/ai/headline-generator', label: 'Headline Gen.' },
-                { href: '/tools/ai/paraphrase', label: 'Paraphraser' },
-                { href: '/tools/ai/voice-studio', label: 'Voice Studio' },
-            ],
-        },
-        {
-            key: 'data',
-            label: 'Data Tools',
-            tools: [
-                { href: '/tools/data/json-converter', label: 'JSON Converter' },
-                { href: '/tools/data/xml-converter', label: 'XML Converter' },
-            ],
-        },
-    ];
+    const handleMouseEnter = (index) => {
+        clearTimeout(timeoutRef.current);
+        setOpenMenu(index);
+    };
+
+    const handleMouseLeave = () => {
+        timeoutRef.current = setTimeout(() => {
+            setOpenMenu(null);
+        }, 200); // Slightly shorter delay than before
+    };
+
+    // Close dropdown when clicking outside
+    const handleClickOutside = (event) => {
+        if (
+            dropdownRefs.current.every(
+                (ref) => ref && !ref.contains(event.target)
+            )
+        ) {
+            setOpenMenu(null);
+        }
+    };
 
     useEffect(() => {
-        const handleClickOutside = (event) => {
-            for (const key in dropdownRefs.current) {
-                if (
-                    dropdownRefs.current[key] &&
-                    !dropdownRefs.current[key].contains(event.target)
-                ) {
-                    setOpenDropdown(null);
-                }
-            }
-        };
         document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
     }, []);
 
     return (
-        <header className="bg-white shadow border-b sticky top-0 z-50">
-            <nav className="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between flex-wrap gap-4">
-
-                {/* Logo */}
-                <Link href="/" className="flex items-center gap-2">
-                    <div className="w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center shadow">
-                        <svg className="w-5 h-5" viewBox="0 0 32 32" fill="currentColor">
-                            <path d="M16 0c8.837 0 16 7.163 16 16s-7.163 16-16 16S0 24.837 0 16 7.163 0 16 0zm0 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2zm-1 6h2v12h-2zm0 14h2v2h-2z" />
-                        </svg>
-                    </div>
-                    <span className="text-xl font-extrabold text-primary">PDF Elegance</span>
+        <header className="sticky top-0 z-50 bg-white border-b shadow-sm">
+            <div className="max-w-screen-xl mx-auto px-4 py-4 flex items-center">
+                <Link href="/" className="text-xl font-bold text-red-600 hover:text-red-700 transition-colors">
+                    PDF Elegance
                 </Link>
 
-                {/* Dropdowns */}
-                <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
-                    {toolCategories.map(({ key, label, tools }) => (
-                        <div
-                            key={key}
-                            className="relative"
-                            ref={(el) => (dropdownRefs.current[key] = el)}
-                        >
-                            <button
-                                onClick={() => setOpenDropdown(openDropdown === key ? null : key)}
-                                className={`text-sm px-3 py-2 font-semibold text-gray-700 hover:text-primary hover:bg-gray-100 rounded-md flex items-center gap-1 transition-all duration-150 ${
-                                    openDropdown === key ? 'bg-gray-100' : ''
-                                }`}
+                <div className="flex-grow flex justify-center">
+                    <nav className="flex items-center space-x-2">
+                        {menuItems.map((menu, index) => (
+                            <div
+                                key={index}
+                                className="relative"
+                                onMouseEnter={() => handleMouseEnter(index)}
+                                onMouseLeave={handleMouseLeave}
+                                ref={(el) => (dropdownRefs.current[index] = el)}
                             >
-                                <span className="truncate max-w-[9rem]" title={label}>{label}</span>
-                                <svg
-                                    className={`w-4 h-4 transition-transform ${
-                                        openDropdown === key ? 'rotate-180' : ''
+                                <button
+                                    className={`px-4 py-2 flex items-center gap-1 rounded-md transition-colors ${
+                                        openMenu === index
+                                            ? "bg-red-700 text-white"
+                                            : "bg-red-600 text-white hover:bg-red-700"
                                     }`}
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    viewBox="0 0 24 24"
+                                    aria-expanded={openMenu === index}
+                                    aria-controls={`dropdown-${index}`}
                                 >
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
+                                    {menu.label}
+                                    <ChevronDown
+                                        className={`w-4 h-4 transition-transform ${
+                                            openMenu === index ? "rotate-180" : ""
+                                        }`}
+                                    />
+                                </button>
 
-                            {openDropdown === key && tools.length > 0 && (
-                                <div className="absolute left-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-3 max-h-72 overflow-auto animate-fadeIn">
-                                    <ul className="space-y-1">
-                                        {tools.map(({ href, label }) => (
-                                            <li key={href}>
+                                {/* Dropdown Menu */}
+                                <div
+                                    id={`dropdown-${index}`}
+                                    className={`absolute left-0 mt-1 w-56 bg-white border border-gray-200 rounded-md shadow-xl z-50 transition-all duration-200 origin-top ${
+                                        openMenu === index
+                                            ? "opacity-100 scale-y-100 visible"
+                                            : "opacity-0 scale-y-95 invisible"
+                                    }`}
+                                    onMouseEnter={() => handleMouseEnter(index)}
+                                    onMouseLeave={handleMouseLeave}
+                                >
+                                    <ul className="py-1">
+                                        {menu.items.map((item, idx) => (
+                                            <li key={idx}>
                                                 <Link
-                                                    href={href}
-                                                    onClick={() => setOpenDropdown(null)}
-                                                    className={`block px-3 py-2 text-sm text-gray-700 hover:text-primary transition truncate ${
-                                                        router.pathname === href ? 'font-bold text-primary' : ''
-                                                    }`}
-                                                    title={label}
+                                                    href={item.path}
+                                                    className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors"
+                                                    onClick={() => setOpenMenu(null)}
                                                 >
-                                                    {label}
+                                                    {item.name}
                                                 </Link>
                                             </li>
                                         ))}
                                     </ul>
                                 </div>
-                            )}
-                        </div>
-                    ))}
+                            </div>
+                        ))}
+                    </nav>
                 </div>
-
-                {/* CTA Button */}
-                <div>
-                    <button className="bg-primary text-white font-semibold px-4 py-2 rounded-md shadow hover:bg-red-700 transition">
-                        Get Premium
-                    </button>
-                </div>
-            </nav>
+            </div>
         </header>
     );
 }

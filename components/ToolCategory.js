@@ -10,24 +10,22 @@ export default function ToolCategory({ category }) {
             <p className="text-gray-600 mb-6">{category.description}</p>
             <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {category.tools.map((tool) => (
-                    <Link href={tool.href} key={tool.name} passHref>
-                        <a className="bg-white shadow-soft p-5 rounded-2xl border hover:shadow-md transition group cursor-pointer block">
-                            <h3
-                                className="text-lg font-bold text-primary mb-2 group-hover:underline truncate"
-                                title={tool.name}
-                                style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
-                            >
-                                {tool.name}
-                            </h3>
-                            <p className="text-sm text-gray-600 min-h-[40px]">
-                                {tool.description || 'No description provided'}
-                            </p>
-                            {tool.featured && (
-                                <span className="inline-block mt-3 text-xs bg-secondary text-white px-2 py-0.5 rounded">
-                  Featured
-                </span>
-                            )}
-                        </a>
+                    <Link href={tool.path} key={tool.name} className="bg-white shadow-soft p-5 rounded-2xl border hover:shadow-md transition group cursor-pointer block">
+                        <h3
+                            className="text-lg font-bold text-primary mb-2 group-hover:underline truncate"
+                            title={tool.name}
+                            style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                        >
+                            {tool.name}
+                        </h3>
+                        <p className="text-sm text-gray-600 min-h-[40px]">
+                            {tool.description || 'No description provided'}
+                        </p>
+                        {tool.featured && (
+                            <span className="inline-block mt-3 text-xs bg-secondary text-white px-2 py-0.5 rounded">
+      Featured
+    </span>
+                        )}
                     </Link>
                 ))}
             </div>
