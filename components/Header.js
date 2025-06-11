@@ -62,7 +62,7 @@ const menuItems = [
     {
         label: 'Universal Converter',
         items: [
-            { name: 'Coming Soon', path: '/coming-soon' },
+            { name: 'Universal Converter', path: '/tools/universal-converter' },
         ],
     },
 ];

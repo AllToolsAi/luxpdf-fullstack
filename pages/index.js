@@ -69,9 +69,18 @@ const mainCategories = [
         description: 'Developer tools and utilities',
         tools: [
             {name: 'Code Diff Checker', path: '/tools/programming/code-diff'},
-            {name: 'Code Editor', path: '/tools/programming/editor'},
-            {name: 'Diff', path: '/tools/programming/diff'},
-            {name: 'Formatter', path: '/tools/programming/formatter'},
+            // {name: 'Code Editor', path: '/tools/programming/editor'},
+            // {name: 'Diff', path: '/tools/programming/diff'},
+            // {name: 'Formatter', path: '/tools/programming/formatter'},
+        ],
+    },
+    {
+        name: 'Universal Converter',
+        icon: '💻',
+        description: 'Universal Converter',
+        tools: [
+            {name: 'Universal Converter', path: 'tools/universal-converter'},
+
         ],
     },
 ];
@@ -80,6 +89,7 @@ export default function Home() {
     return (
         <Layout>
             <Head>
+                <meta name="google-site-verification" content="j1Sa26pQO5fgYlpN2tUSEQU2ea5eM8S3brgCz8PD5XA" />
                 <title>All Tools - PDF Elegance</title>
                 <meta name="description" content="Complete collection of PDF, document, and media tools"/>
             </Head>
