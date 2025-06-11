@@ -1,5 +1,6 @@
 import Footer from './Footer';
 import Link from 'next/link';
+import { Analytics } from '@vercel/analytics/next';
 
 export default function Layout({ children }) {
     return (
@@ -29,6 +30,9 @@ export default function Layout({ children }) {
 
             {/* Footer */}
             <Footer />
+
+            {/* Vercel Analytics */}
+            <Analytics />
         </div>
     );
 }
