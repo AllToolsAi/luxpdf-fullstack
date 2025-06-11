@@ -11,7 +11,7 @@ export default function Layout({ children }) {
                     <Link href="/" className="flex items-center gap-2">
                         <div className="logo-circle">
                             Elite PDF Tools
-                            {/*<meta name="google-adsense-account" content="ca-pub-8985590835205084"/>*/}
+                            <meta name="google-adsense-account" content="ca-pub-8985590835205084"/>
 
                         </div>
                         <span className="text-xl font-bold text-primary">Toolkit</span>
